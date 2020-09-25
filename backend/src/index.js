@@ -8,8 +8,6 @@ mongoose.connect('mongodb+srv://WellingtonRoth:braview765@cluster0.ifkal.mongodb
   useUnifiedTopology: true,
 });
 
-app.get('/', (req, res) => {
-  return res.send("tao")
-});
+app.use(require('./routes'));
 
 app.listen(3333);
