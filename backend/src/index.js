@@ -8,6 +8,7 @@ mongoose.connect('mongodb+srv://WellingtonRoth:braview765@cluster0.ifkal.mongodb
   useUnifiedTopology: true,
 });
 
+app.use(express.json());
 app.use(require('./routes'));
 
 app.listen(3333);
