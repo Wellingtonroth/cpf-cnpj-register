@@ -9,7 +9,7 @@ const tableHeader = [
   { label: "Lista negra?", field: "blacklist" },
 ];
 
-export default function Table({ loading, data = [], toogleModalUpdate, setProffUpdate }) {
+export default function Table({ loading, data = [], toogleModalUpdate, setUserUpdate }) {
   if (loading) {
     return <LoadingData />;
   }
@@ -34,7 +34,7 @@ export default function Table({ loading, data = [], toogleModalUpdate, setProffU
                 <Button
                   background="#6d72d7"
                   onClick={() => {
-                    setProffUpdate(row);
+                    setUserUpdate(row);
                     toogleModalUpdate(true);
                   }}>
                   EDITAR

@@ -10,7 +10,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [modalInsert, setModalInsert] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
-  const [proffUpdate, setProffUpdate] = useState(null);
+  const [userUpdate, setUserUpdate] = useState(null);
   
   useEffect(() => {
     setLoading(true);
@@ -29,6 +29,25 @@ function App() {
     }
   }, []);
 
+  const addUser = body => {
+    console.log(body, "SOU O BODYYYYYYYY");
+    try {
+      api.post('users', body).then(response => {
+        if (response.status === 422) {
+          console.log("O CPF informado já existe!");
+        } else if (response.error) {
+          console.log("Erro ao cadastrar usuário!");
+        } else {
+          setData([response, ...data]);
+          setModalInsert(false);
+          console.log("Usuário cadastrado com sucesso!");
+        }
+      });
+    } catch (e) {
+      console.log("Erro ao inserir usuário, tente novamente!");
+    }
+  };
+
 
   return (
       <>
@@ -43,21 +62,19 @@ function App() {
           loading={loading}
           data={data}
           toogleModalUpdate={setModalUpdate}
-          setProffUpdate={setProffUpdate}
+          setUserUpdate={setUserUpdate}
         />
         {modalInsert && (
           <ModalInsert 
             openModal={setModalInsert} 
-            // addProff={body => addProff(body)} 
-            // loading={loadingTable}
+            addUser={body => addUser(body)} 
           />
         )}
         {modalUpdate && (
           <ModalUpdate
-            // openModal={setModalUpdate}
-            // updateProff={body => updateProff(body)}
-            // loading={loadingTable}
-            // proff={proffUpdate}
+            openModal={setModalUpdate}
+            // updateUser={body => updateUser(body)}
+            // user={userUpdate}
           />
         )}
     </>

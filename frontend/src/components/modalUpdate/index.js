@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Modal, Card, Title, Form } from "../../styled";
 import * as S from "./styled";
 
-export function ModalUpdate({ openModal, updateProff, loading, proff }) {
+export function ModalUpdate({ openModal, updateUser, loading, user }) {
+
+  useEffect(() => {
+    function closeModalDetails(event) {
+      if (event.keyCode === 27) {
+        openModal();
+      }
+    }
+    document.addEventListener("keyup", closeModalDetails);
+  });
 
   return (
-    <S.Container>
-      SOU A MODALLLLLLLLLLLL DE EDITARRR
-    </S.Container>
+    <Modal>
+      <Card>
+        <Title>Editar um usuário</Title>
+
+        <Form>
+          
+
+        </Form>
+
+      </Card>
+    </Modal>
   );
 }

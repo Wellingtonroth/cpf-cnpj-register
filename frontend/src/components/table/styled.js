@@ -35,7 +35,7 @@ export const Th = styled.th`
 `;
 
 export const Td = styled.td`
-  font-size: 1rem;
+  font-size: ${props => props.font ? props.font : "1rem"};
   color: #555;
   padding: 16px;
 
