@@ -1,65 +1,44 @@
 import React from "react";
-import * as Dimmer from "../../../components/dimmer";
+import Loading from "../../utils/loading";
+import { Button } from "../../styled";
 import * as S from "./styled";
 
 const tableHeader = [
   { label: "Nome", field: "name" },
-  { label: "E-mail", field: "email" }
+  { label: "CPF", field: "cpfcnpj" },
+  { label: "Lista negra?", field: "blacklist" },
 ];
 
-function Table({ loading, data = [], loadingTable, toogleModalUpdate, setProffUpdate }) {
+export default function Table({ loading, data = [], toogleModalUpdate, setProffUpdate }) {
   if (loading) {
-    return <Loading />;
+    return <LoadingData />;
   }
 
   return (
     <S.Container>
-      <S.Table className="table is-striped is-hoverable is-fullwidth">
+      <S.Table>
         <S.Tbody>
           <S.Tr>
             {tableHeader.map((it, i) => (
-              <S.ThHeader key={i}>{it.label}</S.ThHeader>
+              <S.Th key={i}>{it.label}</S.Th>
             ))}
           </S.Tr>
         </S.Tbody>
-        {loadingTable && (
-          <S.Tr key="loading-levels">
-            <S.Td>
-              <Dimmer.Text width="100%" />
-              <Dimmer.Text width="50%" />
-            </S.Td>
-            <S.Td>
-              <Dimmer.Text width="100%" />
-              <Dimmer.Text width="50%" />
-            </S.Td>
-            <S.Td>
-              <Dimmer.Text width="100%" />
-              <Dimmer.Text width="50%" />
-            </S.Td>
-            <S.Td>
-              <Dimmer.Text width="100%" />
-              <Dimmer.Text width="50%" />
-            </S.Td>
-            <S.Td>
-              <Dimmer.Text width="100%" />
-              <Dimmer.Text width="50%" />
-            </S.Td>
-          </S.Tr>
-        )}
         {data.map(row => {
           return (
             <S.Tr key={row.id}>
-              <S.Td visible={row.display}>{row[tableHeader[0].field]}</S.Td>
-              <S.Td visible={row.display}>{row[tableHeader[1].field]}</S.Td>
-              <S.Td width>
-                <S.Buttons
-                  link
+              <S.Td>{row[tableHeader[0].field]}</S.Td>
+              <S.Td>{row[tableHeader[1].field]}</S.Td>
+              <S.Td>{row[tableHeader[2].field] === false ? "não" : "sim"}</S.Td>
+              <S.Td>
+                <Button
+                  background="#6d72d7"
                   onClick={() => {
                     setProffUpdate(row);
                     toogleModalUpdate(true);
                   }}>
                   EDITAR
-                </S.Buttons>
+                </Button>
               </S.Td>
             </S.Tr>
           );
@@ -69,21 +48,20 @@ function Table({ loading, data = [], loadingTable, toogleModalUpdate, setProffUp
   );
 }
 
-export default Table;
-
-const Loading = () => (
+const LoadingData = () => (
   <>
-    <Dimmer.Text width="80%" />
-    <Dimmer.Text width="50%" />
-    <Dimmer.Text width="50%" />
-    <Dimmer.Text width="40%" />
-    <Dimmer.Text width="80%" />
-    <Dimmer.Text width="50%" />
-    <Dimmer.Text width="50%" />
-    <Dimmer.Text width="40%" />
-    <Dimmer.Text width="80%" />
-    <Dimmer.Text width="50%" />
-    <Dimmer.Text width="50%" />
-    <Dimmer.Text width="40%" />
+    <Loading width="80%" />
+    <Loading width="50%" />
+    <Loading width="80%" />
+    <Loading width="20%" />
+    <Loading width="60%" />
+    <Loading width="10%" />
+    <Loading width="30%" />
+    <Loading width="90%" />
+    <Loading width="50%" />
+    <Loading width="50%" />
+    <Loading width="100%" />
+    <Loading width="20%" />
+    <Loading width="5%" />
   </>
 );
