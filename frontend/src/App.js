@@ -25,26 +25,24 @@ function App() {
         return response;
       });
     } catch (e) {
-      console.log("Erro ao carregar usuários")
+      alert("Erro ao carregar usuários")
     }
   }, []);
   
   const addUser = body => {
     try {
       api.post('users', body).then(response => {
-        if (response.status === 422) {
-          console.log("O CPF informado já existe!");
-        } else if (response.error) {
-          console.log("Erro ao cadastrar usuário!");
+        if (response.error) {
+          alert("Erro ao cadastrar usuário!");
         } else {
           setData([response, ...data]);
           setModalInsert(false);
           window.location.reload();
-          console.log("Usuário cadastrado com sucesso!");
+          alert("Usuário cadastrado com sucesso!");
         }
       });
     } catch (e) {
-      console.log("Erro ao inserir usuário, tente novamente!");
+      alert("Erro ao inserir usuário, tente novamente!");
     }
   };
   
@@ -60,16 +58,16 @@ function App() {
     try {
       api.put(`users/${id}`, validateBody).then(response => {
         if (response.error) {
-          console.log("Erro ao editar usuário!");
+          alert("Erro ao editar usuário!");
         } else {
           setData([response, ...data.filter(it => it._id !== body.id)]);
           setModalUpdate(false);
           window.location.reload();
-          console.log("Usuário editado com sucesso!");
+          alert("Usuário editado com sucesso!");
         }
       });
     } catch (e) {
-      console.log("Erro ao editar usuário, tente novamente!");
+      alert("Erro ao editar usuário, tente novamente!");
     }
   };
 
@@ -77,15 +75,15 @@ function App() {
     try {
       api.delete(`users/${body._id}`, {...body}).then(response => {
         if (response.error) {
-          console.log("Erro ao remover usuário!");
+          alert("Erro ao remover usuário!");
         } else {
           setData([...data.filter(it => it.id !== body._id)]);
           window.location.reload();
-          console.log("Usuário removido com sucesso!");
+          alert("Usuário removido com sucesso!");
         }
       });
     } catch (e) {
-      console.log("Erro ao excluir usuário, tente novamente!");
+      alert("Erro ao excluir usuário, tente novamente!");
     }
   };
 
