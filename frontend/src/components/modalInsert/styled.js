@@ -5,4 +5,5 @@ export const Section = styled.section`
   overflow: hidden;
   padding: 16px;
   background: #fff;
+  border-radius: 0 0 16px 16px;
 `;

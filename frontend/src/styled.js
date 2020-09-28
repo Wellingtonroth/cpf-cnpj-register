@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Button = styled.button`
   padding: 8px 24px;
   border-radius: 16px;
-  border: 1px solid #4248c0;
+  border: 1px solid #6d72d7;
   background-color: ${props => props.background ? props.background : "#4248c0"};
   color: #fff;
   cursor: pointer;
@@ -29,7 +29,7 @@ export const Modal = styled.div`
 export const Card = styled.div`
   margin: auto;
   max-width: 750px;
-  min-width: 420px;
+  min-width: 500px;
   background-color: #eee;
   border: 1px solid rgba( 36, 57, 96, 1);
   border-radius: 16px;
@@ -37,9 +37,10 @@ export const Card = styled.div`
 
 export const Title = styled.h1`
   color: #384047;
-  margin-bottom: 16px;
   font-size: 1.250rem;
-  padding: 16px;
+  padding: 16px 16px 32px 16px;
+  border-radius: 16px 16px 0 0;
+  background: #bfbff8;
 `;
 
 export const Form = styled.form``;
@@ -48,4 +49,5 @@ export const Footer = styled.footer`
   display: flex;
   justify-content: space-between;
   padding: 16px 16px 0 16px;
+  border-radius: 16px;
 `;

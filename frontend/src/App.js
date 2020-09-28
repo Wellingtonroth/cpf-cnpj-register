@@ -11,7 +11,7 @@ function App() {
   const [modalInsert, setModalInsert] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
   const [userUpdate, setUserUpdate] = useState(null);
-  
+
   useEffect(() => {
     setLoading(true);
     try {
@@ -25,12 +25,11 @@ function App() {
         return response;
       });
     } catch (e) {
-      console.log("erro")
+      console.log("Erro ao carregar usuários")
     }
   }, []);
-
+  
   const addUser = body => {
-    console.log(body, "SOU O BODYYYYYYYY");
     try {
       api.post('users', body).then(response => {
         if (response.status === 422) {
@@ -40,6 +39,7 @@ function App() {
         } else {
           setData([response, ...data]);
           setModalInsert(false);
+          window.location.reload();
           console.log("Usuário cadastrado com sucesso!");
         }
       });
@@ -47,34 +47,69 @@ function App() {
       console.log("Erro ao inserir usuário, tente novamente!");
     }
   };
+  
+  const updateUser = body => {
+    let id = body.id;
 
+    const validateBody = {
+      name: body.name,
+      cpfcnpj: body.cpfcnpj,
+      blacklist: body.blacklist,
+    }
+
+    try {
+      api.put(`users/${id}`, validateBody).then(response => {
+        if (response.error) {
+          console.log("Erro ao editar usuário!");
+        } else {
+          setData([response, ...data.filter(it => it._id !== body.id)]);
+          setModalUpdate(false);
+          window.location.reload();
+          console.log("Usuário editado com sucesso!");
+        }
+      });
+    } catch (e) {
+      console.log("Erro ao editar usuário, tente novamente!");
+    }
+  };
+
+  const deleteUser = body => {
+    try {
+      api.delete(`users/${body._id}`, {...body}).then(response => {
+        if (response.error) {
+          console.log("Erro ao remover usuário!");
+        } else {
+          setData([...data.filter(it => it.id !== body._id)]);
+          window.location.reload();
+          console.log("Usuário removido com sucesso!");
+        }
+      });
+    } catch (e) {
+      console.log("Erro ao excluir usuário, tente novamente!");
+    }
+  };
 
   return (
       <>
-        <Header
-          // setSendSearch={setSendSearch}
-          // sendSearch={sendSearch}
-          openModal={setModalInsert}
-          // setQuerySearch={setQuerySearch}
-          // searchParams={searchParams}
-        />
+        <Header openModal={setModalInsert} />
         <Table
           loading={loading}
           data={data}
           toogleModalUpdate={setModalUpdate}
           setUserUpdate={setUserUpdate}
+          deleteUser={deleteUser}
         />
+
         {modalInsert && (
-          <ModalInsert 
-            openModal={setModalInsert} 
-            addUser={body => addUser(body)} 
-          />
+          <ModalInsert openModal={setModalInsert} addUser={body => addUser(body)} />
         )}
+
         {modalUpdate && (
-          <ModalUpdate
-            openModal={setModalUpdate}
-            // updateUser={body => updateUser(body)}
-            // user={userUpdate}
+          <ModalUpdate 
+            openModal={setModalUpdate} 
+            updateUser={body => updateUser(body)}
+            deleteUser={body => deleteUser(body)}
+            user={userUpdate} 
           />
         )}
     </>

@@ -35,8 +35,6 @@ export function ModalInsert({ openModal, addUser }) {
               setFieldValue,
             } = props;
 
-            console.log(values);
-
             return (
               <>
                 <S.Section>

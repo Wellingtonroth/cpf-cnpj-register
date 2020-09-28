@@ -9,7 +9,7 @@ const tableHeader = [
   { label: "Lista negra?", field: "blacklist" },
 ];
 
-export default function Table({ loading, data = [], toogleModalUpdate, setUserUpdate }) {
+export default function Table({ loading, data = [], toogleModalUpdate, setUserUpdate, deleteUser }) {
   if (loading) {
     return <LoadingData />;
   }
@@ -39,6 +39,11 @@ export default function Table({ loading, data = [], toogleModalUpdate, setUserUp
                   }}>
                   EDITAR
                 </Button>
+                <Button onClick={() => {
+                  deleteUser(row);
+                }}>
+                  excluir
+                </Button>
               </S.Td>
             </S.Tr>
           );
@@ -60,7 +65,7 @@ const LoadingData = () => (
     <Loading width="90%" />
     <Loading width="50%" />
     <Loading width="50%" />
-    <Loading width="100%" />
+    <Loading width="70%" />
     <Loading width="20%" />
     <Loading width="5%" />
   </>
