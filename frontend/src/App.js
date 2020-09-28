@@ -91,7 +91,9 @@ function App() {
 
   return (
       <>
-        <Header openModal={setModalInsert} />
+        <Header 
+          openModal={setModalInsert} 
+        />
         <Table
           loading={loading}
           data={data}

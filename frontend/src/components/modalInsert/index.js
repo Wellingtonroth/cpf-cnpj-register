@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { Formik } from "formik";
 import  Input  from "../../utils/Input";
+import  ToggleInput  from "../../utils/ToggleInput";
 import { Schema } from "../../schema";
-import { Modal, Card, Title, Form, Button, Footer } from "../../styled";
+import { Modal, Card, Title, Form, Button, Footer, BoxToggle } from "../../styled";
 import * as S from "./styled";
 
 export function ModalInsert({ openModal, addUser }) {
@@ -34,7 +35,7 @@ export function ModalInsert({ openModal, addUser }) {
               handleSubmit,
               setFieldValue,
             } = props;
-
+            
             return (
               <>
                 <S.Section>
@@ -64,6 +65,20 @@ export function ModalInsert({ openModal, addUser }) {
                       }}
                       onBlur={handleBlur}
                     />
+
+                    <BoxToggle>
+                      <span>
+                        Lista Negra?
+                      </span>
+                      <ToggleInput
+                        activeLabel="SIM"
+                        inactiveLabel="NÃO"
+                        field={{
+                          onChange: () => setFieldValue("blacklist", !values.blacklist)
+                        }}
+                        value={values.blacklist}
+                      />
+                    </BoxToggle>
                   </Form>
 
                   <Footer>

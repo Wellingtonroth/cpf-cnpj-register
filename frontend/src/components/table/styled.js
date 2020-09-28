@@ -27,7 +27,7 @@ export const Tr = styled.tr`
 `;
 
 export const Th = styled.th`
-  width: calc(100% / 3);
+  width: calc(100% / 4);
   font-size: 1rem;
   font-weight: 600;
   text-align: left;

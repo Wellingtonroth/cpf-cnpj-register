@@ -51,3 +51,12 @@ export const Footer = styled.footer`
   padding: 16px 16px 0 16px;
   border-radius: 16px;
 `;
+
+export const BoxToggle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #999999;
+  font-size: 0.875rem;
+  padding: 8px 0 16px 8px;
+`;

@@ -2,20 +2,20 @@ import React from "react";
 import { Button } from "../styled";
 import styled from "styled-components";
 
-export default function Header({ openModal, setQuerySearch, searchParams, sendSearch, setSendSearch }) {
+export default function Header({ openModal }) {
+
   return (
     <Headered>
       <Filters>
         <Input
           placeholder="Digite para pesquisar"
           type="search"
-          // defaultValue={searchParams.text}
-          // onChange={e => setQuerySearch({ text: e.target.value })}
-          onKeyPress={e => {
-            if (e.key === "Enter") setSendSearch(!sendSearch);
-          }}
+          // type="text"
+          // onChange={(e) => {
+          //   setTextSearch({ text: e.target.value }); 
+          // }}
         />
-        <Button link onClick={() => setSendSearch(!sendSearch)}>
+        <Button>
           BUSCAR
         </Button>
       </Filters>
@@ -35,7 +35,7 @@ const Headered = styled.header`
   padding: 24px;
 `;
 
-const Filters = styled.div`
+const Filters = styled.form`
   display: flex;
   justify-content: flex-start;
   align-items: center;
