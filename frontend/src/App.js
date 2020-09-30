@@ -11,6 +11,7 @@ function App() {
   const [modalInsert, setModalInsert] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
   const [userUpdate, setUserUpdate] = useState(null);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     setLoading(true);
@@ -25,7 +26,7 @@ function App() {
         return response;
       });
     } catch (e) {
-      alert("Erro ao carregar usuários")
+      alert("Erro ao carregar usuários");
     }
   }, []);
   
@@ -79,7 +80,6 @@ function App() {
         } else {
           setData([...data.filter(it => it.id !== body._id)]);
           window.location.reload();
-          alert("Usuário removido com sucesso!");
         }
       });
     } catch (e) {
@@ -90,7 +90,8 @@ function App() {
   return (
       <>
         <Header 
-          openModal={setModalInsert} 
+          openModal={setModalInsert}
+          setQuery={setQuery}
         />
         <Table
           loading={loading}
@@ -98,6 +99,7 @@ function App() {
           toogleModalUpdate={setModalUpdate}
           setUserUpdate={setUserUpdate}
           deleteUser={deleteUser}
+          query={query}
         />
 
         {modalInsert && (

@@ -2,25 +2,20 @@ import React from "react";
 import { Button } from "../styled";
 import styled from "styled-components";
 
-export default function Header({ openModal }) {
-
+export default function Header({ openModal, setQuery }) {
   return (
     <Headered>
       <Filters>
         <Input
-          placeholder="Digite para pesquisar"
           type="search"
-          // type="text"
-          // onChange={(e) => {
-          //   setTextSearch({ text: e.target.value }); 
-          // }}
+          placeholder="Digite um nome para pesquisar"
+          onChange={(e) => {
+            setQuery({ searching: e.target.value });
+          }}
         />
-        <Button>
-          BUSCAR
-        </Button>
       </Filters>
       <div>
-        <Button onClick={() => openModal(true)}>
+        <Button type="button"  onClick={() => openModal(true)}>
           ADICIONAR
         </Button>
       </div>
@@ -42,7 +37,7 @@ const Filters = styled.form`
 `;
 
 const Input = styled.input`
-  min-width: 330px;
+  min-width: 310px;
   align-items: center;
   border-radius: 16px;
   display: inline-flex;

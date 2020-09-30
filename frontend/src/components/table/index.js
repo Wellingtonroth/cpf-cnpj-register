@@ -9,15 +9,29 @@ const tableHeader = [
   { label: "Lista negra?", field: "blacklist" },
 ];
 
-export default function Table({ loading, data = [], toogleModalUpdate, setUserUpdate, deleteUser }) {
 
+export default function Table({ loading, data = [], toogleModalUpdate, setUserUpdate, deleteUser, query }) {
   if (loading) {
     return <LoadingData />;
   }
 
+  let search = query.searching === undefined ? "" : query.searching;
+
+  function filterUser(user) {
+    const value = `${user.name.toLowerCase()} ${user.cpfcnpj.replaceAll('.', '').replaceAll('-', '')}`;
+    return value.includes(search.toLowerCase().replaceAll('.', '').replaceAll('-', ''));
+  }
+
+  const filteredUsers = () => {
+    if (search) {
+      return data.filter(user => filterUser(user));
+    }
+    return data;
+  }
+
   return (
     <S.Container>
-      <S.Table id="tabela">
+      <S.Table>
         <S.Tbody>
           <S.Tr>
             {tableHeader.map((it, i) => (
@@ -26,33 +40,37 @@ export default function Table({ loading, data = [], toogleModalUpdate, setUserUp
           </S.Tr>
         </S.Tbody>
         
-        {data.map(row => {
-          return (
-            <S.Tr key={row.id}>
-              <S.Td>{row[tableHeader[0].field]}</S.Td>
-              <S.Td>{row[tableHeader[1].field]}</S.Td>
-              <S.Td>{row[tableHeader[2].field] === false ? "não" : "sim"}</S.Td>
-              <S.Td style={{ display: "flex", justifyContent: "space-around"}}>
-                <Button
-                  style={{ marginRight: "8px" }}
-                  background="#6d72d7"
-                  onClick={() => {
-                    setUserUpdate(row);
-                    toogleModalUpdate(true);
-                  }}>
-                  EDITAR
-                </Button>
-                <Button
-                  background="#6d72d7"
-                  onClick={() => {
-                  deleteUser(row);
-                }}>
-                  EXCLUIR
-                </Button>
-              </S.Td>
-            </S.Tr>
-          );
-        })}
+          <>
+            {filteredUsers().map(row => {
+              return (
+                <S.Tr key={row.id}>
+                    <>
+                      <S.Td>{row[tableHeader[0].field]}</S.Td>
+                      <S.Td>{row[tableHeader[1].field]}</S.Td>
+                      <S.Td>{row[tableHeader[2].field] === false ? "Não" : "Sim"}</S.Td>
+                      <S.Td style={{ display: "flex", justifyContent: "space-around"}}>
+                        <Button
+                          style={{ marginRight: "8px" }}
+                          background="#6d72d7"
+                          onClick={() => {
+                            setUserUpdate(row);
+                            toogleModalUpdate(true);
+                          }}>
+                          EDITAR
+                        </Button>
+                        <Button
+                          background="#6d72d7"
+                          onClick={() => {
+                          deleteUser(row);
+                        }}>
+                          EXCLUIR
+                        </Button>
+                    </S.Td>
+                  </>
+              </S.Tr>
+            );
+          })}
+        </>
       </S.Table>
     </S.Container>
   );

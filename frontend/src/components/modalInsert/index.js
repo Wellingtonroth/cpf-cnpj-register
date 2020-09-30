@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Formik } from "formik";
 import  Input  from "../../utils/Input";
 import  ToggleInput  from "../../utils/ToggleInput";
-import { Schema } from "../../schema";
 import { Modal, Card, Title, Form, Button, Footer, BoxToggle } from "../../styled";
 import * as S from "./styled";
 
@@ -26,8 +25,7 @@ export function ModalInsert({ openModal, addUser }) {
           onSubmit={(values, { setSubmitting }) => {
             addUser(values);
             setSubmitting(false);
-          }}
-          validationSchema={Schema}>
+          }}>
           {props => {
             const {
               values,

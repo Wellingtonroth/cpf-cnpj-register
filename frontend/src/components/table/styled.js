@@ -39,9 +39,9 @@ export const Td = styled.td`
   color: #555;
   padding: 16px;
 
-  &:first-letter { 
+  /* &:first-letter {
     text-transform: capitalize; 
-  }
+  } */
 `;
 
 export const Buttons = styled.button`
