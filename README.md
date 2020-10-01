@@ -34,15 +34,25 @@ You need to access the application folder:
 $ cd cpf-cnpj-register
 ```
 
-You will se 2 folders, backend and frontend;
+You will se 2 folders:
+* backend;
+* frontend;
 
-You can start the frontend with
+You can start the frontend with:
+
+```sh
+$ cd frontend
+```
 
 ```sh
 $ yarn start
 ```
 
-And start the backend with
+And start the backend with:
+
+```sh
+$ cd backend
+```
 
 ```sh
 $ yarn dev
