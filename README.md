@@ -34,7 +34,7 @@ You need to access the application folder:
 $ cd cpf-cnpj-register
 ```
 
-You will se 2 folders:
+You will see two folders:
 * backend;
 * frontend;
 
