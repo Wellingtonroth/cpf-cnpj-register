@@ -44,10 +44,17 @@ You can start the frontend with:
 $ cd frontend
 ```
 
+Than you have to run:
+
+```sh
+$ yarn
+```
+to download the dependencies;
+
+* when it finishes you can run:
 ```sh
 $ yarn start
 ```
-
 And start the backend with:
 
 ```sh
