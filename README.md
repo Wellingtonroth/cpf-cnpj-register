@@ -19,3 +19,37 @@ The `api` uri preceeds all API endpoints and the following endpoints are current
 * GET `/status` - Get uptime server.
 
 To configure this project, follow the steps below:
+
+### Installation
+
+First of all you will have to download the project, run the following command:
+
+```sh
+$ git clone https://github.com/Wellingtonroth/cpf-cnpj-register.git
+```
+
+You need to access the application folder:
+
+```sh
+$ cd cpf-cnpj-register
+```
+
+You will se 2 folders, backend and frontend;
+
+You can start the frontend with
+
+```sh
+$ yarn start
+```
+
+And start the backend with
+
+```sh
+$ yarn dev
+```
+
+Now you can access in the browser using the following URL
+
+```sh
+http://localhost:3000/
+```
