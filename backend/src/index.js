@@ -12,7 +12,7 @@ mongoose.connect('mongodb+srv://WellingtonRoth:braview765@cluster0.ifkal.mongodb
 
 app.use(cors());
 
-count = 0;
+let count = 0;
 app.use('*', (req, res, next) => {
   count++; 
   next(); 
