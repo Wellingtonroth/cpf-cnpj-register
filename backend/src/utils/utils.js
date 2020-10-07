@@ -102,13 +102,7 @@ function valida_cpf(valor) {
   var novo_cpf = calc_digitos_posicoes(novo_cpf, 11);
 
   // Verifica se o novo CPF gerado é idêntico ao CPF enviado
-  if (novo_cpf === valor) {
-    // CPF válido
-    return true;
-  } else {
-    // CPF inválido 
-    return false;
-  }
+  return novo_cpf === valor;
 }
 
 /*
@@ -143,13 +137,7 @@ function valida_cnpj(valor) {
   var cnpj = segundo_calculo;
 
   // Verifica se o CNPJ gerado é idêntico ao enviado
-  if (cnpj === cnpj_original) {
-      return true;
-  }
-
-  // Retorna falso por padrão
-  return false;
-
+  return cnpj === cnpj_original;
 } // valida_cnpj
 
 /*
